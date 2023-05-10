@@ -1,11 +1,16 @@
-import { Container } from '@mui/material';
 import React from 'react';
+import { Container, CssBaseline } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+import Header from './Header';
 
 const App: React.FC = () => (
-  <Container>
-    <Outlet />
-  </Container>
+  <>
+    <CssBaseline />
+    <Header />
+    <Container>
+      <Outlet />
+    </Container>
+  </>
 );
 
 export default App;
