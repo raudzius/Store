@@ -8,21 +8,22 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import axios from 'axios';
 import Image from 'mui-image';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import agent from '../../app/api/agent';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/products/${id}`)
-      .then((response) => setProduct(response.data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    if (id) {
+      agent.Catalog.details(Number(id))
+        .then((productData) => setProduct(productData))
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    }
   }, [id]);
 
   if (loading) return <Typography variant="h3">Loading...</Typography>;
