@@ -11,6 +11,11 @@ axios.interceptors.response.use(
     const { data, status } = error.response as AxiosResponse;
     switch (status) {
       case 400:
+        if (data.errors) {
+          const modelStateErrors = Object.values(data.errors);
+          // eslint-disable-next-line @typescript-eslint/no-throw-literal
+          throw modelStateErrors;
+        }
         toast.error(data.title);
         break;
       case 401:
