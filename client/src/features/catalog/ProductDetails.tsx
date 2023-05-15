@@ -12,6 +12,7 @@ import Image from 'mui-image';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import agent from '../../app/api/agent';
+import NotFound from '../../app/errors/NotFound';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const ProductDetails: React.FC = () => {
   }, [id]);
 
   if (loading) return <Typography variant="h3">Loading...</Typography>;
-  if (!product) return <Typography variant="h3">Product not found</Typography>;
+  if (!product) return <NotFound />;
 
   return (
     <Grid container spacing={6}>
