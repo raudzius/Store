@@ -15,5 +15,6 @@ module.exports = {
       },
     ],
     'react/require-default-props': [0],
+    'import/no-cycle': [0],
   },
 };
